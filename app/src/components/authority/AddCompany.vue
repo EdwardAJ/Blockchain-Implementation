@@ -4,15 +4,12 @@
       <div class="row">
         <div class="col">
           <h5 class="page-title page-title-margin"> 
-            All Companies
+            Add Company
           </h5>
         </div>
       </div>
-      <div class="row mt-4 animated fast fadeIn">
-        <div v-if="rows.length === 0">
-          <p class="col not-found"> No Company Found </p>
-        </div>
-        <div v-else class="col table-margin-left">
+      <div class="row mt-2">
+        <div class="col">
           <Table
             :prop-rows="rows"
             :prop-columns="columns"
@@ -34,27 +31,43 @@ export default {
       columns: [
         {
           key: 'companyID',
-          label: 'Company ID'
+          label: 'Company ID',
+          sortable: true
         },
         {
           key: 'name',
-          label: 'Name'
+          label: 'Name',
+          sortable: true
         },
         {
           key: 'address',
-          label: 'Address'
+          label: 'Address',
+          sortable: true
         },
         {
           key: 'phoneNumber',
-          label: 'Phone Number'
+          label: 'Phone Number',
+          sortable: true
         }
       ],
-      rows: []
+      rows: [
+        {
+          companyID: 'asdda',
+          name: 'Aing',
+          address: 'Jl. asdad',
+          phoneNumber: '08222'
+        },
+        {
+          companyID: 'asdda',
+          name: 'Aing',
+          address: 'Jl. asdad',
+          phoneNumber: '08222'
+        }
+      ]
     }
   }
 }
 </script>
 <style>
   @import '../../../static/css/main.css';
-  @import '../../../static/css/transitions.css';
 </style>

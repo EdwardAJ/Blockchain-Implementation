@@ -2,7 +2,10 @@
   <div class="container-fluid">
     <div class="row">
       <Sidebar />
-      <router-view style="margin-left: 250px;" />
+      <router-view
+        style="margin-left: 250px;"
+        class="child-background"
+      />
     </div>
   </div>
 </template>
@@ -51,3 +54,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .child-background {
+    width: calc(100vw - 250px);
+    height: 100vh;
+    background-color: #363636;
+  }
+</style>

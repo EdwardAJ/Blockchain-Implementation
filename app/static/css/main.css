@@ -1,0 +1,14 @@
+.page-title {
+  font-family: 'Lato-Regular';
+  font-size: 1.5rem;
+  letter-spacing: 0.055rem;
+  color: #ffffff;
+}
+
+.page-title-margin {
+  margin-top: 75px;
+}
+
+.not-found {
+  color: white;
+}

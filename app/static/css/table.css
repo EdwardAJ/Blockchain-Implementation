@@ -1,0 +1,39 @@
+.table {
+    font-size: 0.83rem;
+}
+
+.table-width {
+    width: calc(80vw - 60px);
+    max-width: 900px;
+    cursor: pointer;
+}
+
+.table-margin-left {
+  margin-left: -12px;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+  color: white;
+  background-color: #3B3B3B;
+}
+
+.table-striped>tbody>tr:nth-child(even)>td, 
+.table-striped>tbody>tr:nth-child(even)>th {
+  color: white;
+}
+
+/* Font color of table */
+.table-striped>tbody,  .table-striped>thead, .table-striped>tbody:hover {
+  color: #ffffff;
+  letter-spacing: 0.05rem;
+  font-size: 0.9rem;
+}
+
+.table-striped>tbody {
+  font-family: 'Lato-Light';
+}
+
+.table-striped>thead {
+  font-family: 'Lato-Bold';
+}

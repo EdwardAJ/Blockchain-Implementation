@@ -11,6 +11,7 @@ import Login from '@/components/Login'
 import Authority from '@/components/Authority'
 import Companies from '@/components/authority/Companies'
 import Invoices from '@/components/authority/Invoices'
+import AddCompany from '@/components/authority/AddCompany'
 
 // Import utility functions
 import * as auth from '../utils/auth'
@@ -28,13 +29,17 @@ const router = new Router({
       component: Main
     },
     {
-      path: '/authority/:id',
+      path: '/authority/',
       name: 'Authority',
       component: Authority,
       children: [
         {
           path: 'companies',
           component: Companies
+        },
+        {
+          path: 'add-company',
+          component: AddCompany
         },
         {
           path: 'invoices',
