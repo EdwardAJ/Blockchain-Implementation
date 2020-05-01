@@ -1,15 +1,27 @@
 <template>
-  <div>
-    <p> Authority </p>
+  <div class="container-fluid">
+    <div class="row">
+      <Sidebar />
+      <router-view style="margin-left: 250px;" />
+    </div>
   </div>
 </template>
 
 <script>
+
 import owner from '../contract-instances/OwnerInstance'
 import * as auth from '../utils/auth'
+
+// Redirect functions
 import Redirect from '../mixins/redirect'
 
+// Components
+import Sidebar from './sidebar/Sidebar'
+
 export default {
+  components: {
+    Sidebar
+  },
   mixins: [Redirect],
   async beforeMount () {
     if (web3) {

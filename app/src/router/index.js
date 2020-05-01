@@ -1,11 +1,21 @@
+// Import dependencies
 import Vue from 'vue'
 import Router from 'vue-router'
-import Main from '@/components/Main'
-import Authority from '@/components/Authority'
-import Login from '@/components/Login'
+import { BootstrapVue } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+// Import components
+import Main from '@/components/Main'
+import Login from '@/components/Login'
+import Authority from '@/components/Authority'
+import Companies from '@/components/authority/Companies'
+import Invoices from '@/components/authority/Invoices'
+
+// Import utility functions
 import * as auth from '../utils/auth'
 
+Vue.use(BootstrapVue)
 Vue.use(Router)
 
 const router = new Router({
@@ -18,9 +28,19 @@ const router = new Router({
       component: Main
     },
     {
-      path: '/authority',
+      path: '/authority/:id',
       name: 'Authority',
-      component: Authority
+      component: Authority,
+      children: [
+        {
+          path: 'companies',
+          component: Companies
+        },
+        {
+          path: 'invoices',
+          component: Invoices
+        }
+      ]
     },
     {
       path: '/login',
@@ -31,16 +51,21 @@ const router = new Router({
 })
 
 router.beforeEach(async (to, from, next) => {
+  var currentAccounts = await auth.getCurrentAccounts()
   // Path needs authorization
   if (to.path !== '/login') {
-    var currentAccounts = await auth.getCurrentAccounts()
     if (web3 && auth.isAccountExist(currentAccounts)) {
       next()
     } else {
       next({ path: '/login' })
     }
   } else {
-    // Path does not need authorization, proceed.
+    // Path does not need authorization
+    // if (web3 && auth.isAccountExist(currentAccounts)) {
+    //   next({ path: '/'})
+    // } else {
+    //   next()
+    // }
     next()
   }
 })
