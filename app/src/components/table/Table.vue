@@ -14,14 +14,6 @@
       </div>
     </template>
     </b-table>
-    <!-- <slot name="content" /> -->
-    <!-- <b-pagination
-      v-model="currentPage"
-      :total-rows="numberOfRows"
-      :per-page="perPage"
-      aria-controls="table-component"
-      pills
-    /> -->
   </div>
 </template>
 

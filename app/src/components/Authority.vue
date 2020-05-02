@@ -37,6 +37,11 @@ export default {
   async beforeMount() {
     await this.handleAuth()
   },
+  mounted () {
+    window.ethereum.on('accountsChanged', (accounts) => {
+      this.handleAuth()
+    })
+  },
   methods: {
     showError (error) {
       if (error.message.includes('Unauthorized')) {
@@ -64,11 +69,6 @@ export default {
       } else {
         this.redirectToLoginPage()
       }
-    }
-  },
-  watch: {
-    async $route (to, from) {
-      await this.handleAuth()
     }
   }
 }
