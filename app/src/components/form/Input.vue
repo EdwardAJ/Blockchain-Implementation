@@ -1,17 +1,26 @@
 <template>
-  <div class="row form-title-margin">
-    <input
-      v-model="data"
-      type="text"
-      :class="['form-control', 'field-length', 'form-content', isFormDirty && isDataEmpty ? 'form-border-error': 'form-border']"
-      :placeholder="data + ' ...'"
-      @focus="isFormDirty = true"
-    >
-    <div v-if="isDataEmpty && isFormDirty">
-      <p class="form-error"> 
-        {{ data }} cannot be empty.
-      </p>
-    </div>
+  <div class="col">
+      <div class="row mt-2">
+        <p class="form-title"> 
+          {{ name }} 
+        </p>
+      </div>
+      <div :class="['row', isFormDirty && isDataEmpty ? 'form-error' : 'form']">
+        <input
+          v-model="data"
+          type="text"
+          :class="['form-control', 'field-length', 'form-content', isFormDirty && isDataEmpty ? 'form-border-error': (isFormDirty ? 'form-border' : 'form-initial-border')]"
+          :placeholder="name + ' ...'"
+          @focus="isFormDirty = true"
+        >
+      </div>
+      <div class="row">
+        <div v-if="isDataEmpty && isFormDirty">
+          <p class="form-error"> 
+            {{ name }} cannot be empty.
+          </p>
+        </div>
+      </div>
   </div>
 </template>
 
