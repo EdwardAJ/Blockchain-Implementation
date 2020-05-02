@@ -33,6 +33,8 @@
 import companies from '../../contract-instances/CompaniesInstance'
 import Input from '../form/Input'
 
+import { isAttributeNotEmpty } from '../../utils/auth'
+
 // Mixins:
 import Redirect from '../../mixins/redirect'
 import AccountProp from '../../mixins/accountProp'
@@ -53,12 +55,9 @@ export default {
       var companyName = this.$refs.name.data
       var companyAddr = this.$refs.address.data
       var companyPhone = this.$refs.phone.data
-      if (this.isAttributeNotEmpty(companyName) && this.isAttributeNotEmpty(companyAddr) && this.isAttributeNotEmpty(companyPhone)) {
+      if (isAttributeNotEmpty(companyName) && this.isAttributeNotEmpty(companyAddr) && this.isAttributeNotEmpty(companyPhone)) {
         this.addCompany(companyName, companyAddr, companyPhone)
       }
-    },
-    isAttributeNotEmpty (attr) {
-      return attr !== ''
     },
     async addCompany (companyName, companyAddr, companyPhone) {
       try {

@@ -8,3 +8,7 @@ export async function getCurrentAccounts () {
 export function isAccountExist (accounts) {
   return accounts.length > 0
 }
+
+export function isAttributeNotEmpty (attr) {
+  return attr !== ''
+}

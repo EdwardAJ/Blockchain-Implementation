@@ -15,9 +15,7 @@
               <button
                 :class="['btn-border', 'btn-action', 'btn-search', 'form-content']" @click="handleOnSearch()"
               > 
-                <p class="btn-content">
-                  Search
-                </p>
+                <p class="btn-content"> Search </p>
               </button>
             </div>
           </Input>
@@ -38,7 +36,7 @@
           <p class="col not-found animated fadeIn"> Invoice Not Found </p>
         </div>
         <div v-else>
-          
+
         </div>
       </div>
     </div>
@@ -47,21 +45,23 @@
 
 <script>
 
-import companies from '../../contract-instances/CompaniesInstance'
 import invoicing from '../../contract-instances/InvoicingInstance'
 
 import Input from '../form/Input'
 import Table from '../table/Table'
 
+import { isAttributeNotEmpty } from '../../utils/auth'
+
 // Mixins:
 import Redirect from '../../mixins/redirect'
 import AccountProp from '../../mixins/accountProp'
+import CompanyIDInput from '../../mixins/inputCompanyID'
 
 export default {
   components: {
     Input
   },
-  mixins: [Redirect, AccountProp],
+  mixins: [Redirect, AccountProp, CompanyIDInput],
   data () {
     return {
       columns: [
@@ -77,40 +77,23 @@ export default {
       rowsPaid: [],
       rowsUnpaid: [],
       showError: false,
-      companyNotFound: false,
-      invoiceNotFound: false,
-      typeCompanyID: true,
-      errorMessage: null,
-      companyName: ''
+      companyName: '',
+      invoiceNotFound: false
     }
   },
   methods: {
     async handleOnSearch () {
       this.resetAttributes()
       var companyID = this.$refs.companyID.data
-      if (this.isAttributeNotEmpty(companyID)) {
-        await this.getCompanyByID(companyID)
-        await this.getInvoicesByID(companyID)
+      if (isAttributeNotEmpty(companyID)) {
+        // getCompanyID is Mixin method
+        await this.getCompanyByID(companyID, this.account)
+        await this.getInvoicesByID(companyID, this.account)
       }
     },
-    isAttributeNotEmpty (attr) {
-      return attr !== ''
-    },
-    async getCompanyByID (companyID) {
+    async getInvoicesByID (companyID, account) {
       try {
-        var company = await companies.methods.getCompanyByID(companyID).call({ from: this.account })
-        this.showCompanyName(company[0])
-      } catch (error) {
-        if (error.message.includes('Company is not found')) {
-          this.showCompanyNotFound()
-        } else if (error.message.includes('invalid bytes32')) {
-          this.showBytes32Error()
-        }
-      }
-    },
-    async getInvoicesByID (companyID) {
-      try {
-        var invoicesArray = await invoicing.methods.getInvoicesByCompanyID(companyID).call({ from: this.account })
+        var invoicesArray = await invoicing.methods.getInvoicesByCompanyID(companyID).call({ from: account })
         this.showInvoices(invoicesArray)
       } catch (error) {
         if (error.message.includes('Invoice not Found')) {
@@ -118,14 +101,8 @@ export default {
         }
       }
     },
-    showCompanyNotFound () {
-      this.companyNotFound = true
-    },
     showInvoiceNotFound () {
       this.invoiceNotFound = true
-    },
-    showBytes32Error () {
-      this.errorMessage = 'invalid bytes32'
     },
     showCompanyName (companyName) {
       this.companyName = companyName
@@ -133,16 +110,12 @@ export default {
     showInvoices (invoicesArray) {
       this.rowsPaid = []
       this.rowsUnpaid = []
-      // invoicesArray.forEach((invoice) => {
-        
-      // })
+      //TODO
     },
     resetAttributes () {
-      this.showError = !this.showError
-      this.errorMessage = null
-      this.companyNotFound = false
-      this.invoiceNotFound = false
+      this.resetCompanyIDAttributes()
       this.companyName = ''
+      this.invoiceNotFound = false
     }
   }
 }

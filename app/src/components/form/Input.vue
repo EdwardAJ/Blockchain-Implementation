@@ -9,7 +9,7 @@
         <div class="flex-display">
           <input
             v-model="data"
-            type="text"
+            :type="typeNum ? 'number': 'text'"
             :class="
               ['form-control', 'field-length', 'form-content',
                 isFormDirty && isDataEmpty ? 'form-border-error': 
@@ -55,6 +55,10 @@ export default {
     },
     errorMessage: {
       type: String,
+      required: false
+    },
+    typeNum: {
+      type: Boolean,
       required: false
     }
   },

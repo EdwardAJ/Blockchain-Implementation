@@ -12,6 +12,7 @@ import Authority from '@/components/Authority'
 import Companies from '@/components/authority/Companies'
 import Invoices from '@/components/authority/Invoices'
 import AddCompany from '@/components/authority/AddCompany'
+import AddInvoice from '@/components/authority/AddInvoice'
 
 // Import utility functions
 import * as auth from '../utils/auth'
@@ -44,6 +45,9 @@ const router = new Router({
         {
           path: 'invoices',
           component: Invoices
+        }, {
+          path: 'add-invoice',
+          component: AddInvoice
         }
       ]
     },
