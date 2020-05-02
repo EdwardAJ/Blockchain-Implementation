@@ -21,7 +21,9 @@ export default {
         }
       }
     },
-    showCompanyNotFound () {
+    async showCompanyNotFound () {
+      this.errorMessage = 'Company Not Found'
+      console.log('errrr: ', this.errorMessage)
       this.companyNotFound = true
     },
     showBytes32Error () {

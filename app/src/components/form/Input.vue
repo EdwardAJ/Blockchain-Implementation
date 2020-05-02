@@ -28,8 +28,8 @@
           </p>
         </div>
       </div>
-      <div v-if="typeCompanyID" class="row">
-        <div v-if="error" :key="showError">
+      <div v-if="typeCompanyID" class="row" :key="showError">
+        <div v-if="error">
           <p class="form-error animated fadeIn"> 
             {{ error }}
           </p>
@@ -79,6 +79,12 @@ export default {
       if (val) {
         this.isFormDirty = true
       }
+      if (this.errorMessage) {
+        this.error = this.errorMessage
+      }
+      
+    },
+    errorMessage (val) {
       this.error = this.errorMessage
     }
   }

@@ -49,18 +49,16 @@ import { isAttributeNotEmpty } from '../../utils/auth'
 // Mixins:
 import Redirect from '../../mixins/redirect'
 import AccountProp from '../../mixins/accountProp'
-import Byte32Input from '../../mixins/inputTypeByte32'
+import CompanyIDInput from '../../mixins/inputCompanyID'
 
 export default {
   components: {
     Input
   },
-  mixins: [Redirect, AccountProp, Byte32Input],
+  mixins: [Redirect, AccountProp, CompanyIDInput],
   data () {
     return {
-      typeCompanyID: true,
       typeNum: true,
-      errorMessage: null,
       showError: false
     }
   },
@@ -69,15 +67,19 @@ export default {
       this.resetAttributes()
       var companyID = this.$refs.companyID.data
       var amount = this.$refs.amount.data
-      if (isAttributeNotEmpty(companyID) && this.isAttributeNotEmpty(amount)) {
-        // Check if company valid
-        
-        this.addInvoice(companyID, amount)
+      if (isAttributeNotEmpty(companyID) && isAttributeNotEmpty(amount)) {
+        // Check if company valid, with function called from Mixin
+        await this.getCompanyByID(companyID, this.account)
+        if (!this.companyNotFound) {
+          await this.addInvoice(companyID, amount, this.account)
+        } else {
+          this.errorMessage = 'Company Not Found'
+        }
       }
     },
-    async addInvoice (companyID, amount) {
+    async addInvoice (companyID, amount, account) {
       try {
-        var response = await invoicing.methods.addInvoice(companyID, amount).send({ from: this.account })
+        var response = await invoicing.methods.addInvoice(companyID, amount).send({ from: account })
         this.refreshPage()
       } catch (error) {
         if (error.message.includes('Unauthorized')) {
@@ -86,8 +88,7 @@ export default {
       }
     },
     resetAttributes () {
-      this.showError = !this.showError
-      this.resetBytes32Attr()
+      this.resetCompanyIDAttributes()
     }
   }
 }

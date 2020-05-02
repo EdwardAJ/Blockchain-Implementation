@@ -110,6 +110,7 @@ export default {
     showInvoices (invoicesArray) {
       this.rowsPaid = []
       this.rowsUnpaid = []
+      console.log('Invoices array: ', invoicesArray)
       //TODO
     },
     resetAttributes () {
