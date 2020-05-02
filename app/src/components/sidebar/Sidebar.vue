@@ -21,7 +21,7 @@
         link-classes="side-bar-color mt-4 ml-4"
         @click="handleNewActiveElmtID('companies')"
       >
-        <div id="companies">
+        <div ref="companies" id="companies">
           All Companies
         </div>
       </b-nav-item>
@@ -71,11 +71,14 @@ export default {
     }
   },
   mounted () {
-    this.onPathChangeHandler(window.location.pathname)
+    this.$nextTick(() => {
+      this.onPathChangeHandler(window.location.pathname)
+    })
   },
   methods: {
     setClass (elmtID, className) {
       let elmt = document.getElementById(elmtID)
+      this.$refs.companies.class = className
       elmt.className = className
     },
     changeActiveElmtID (elmtID) {

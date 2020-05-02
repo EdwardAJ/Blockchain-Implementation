@@ -1,10 +1,10 @@
 export default {
   methods: {
-    redirectToAuthorityPage () {
-      this.$router.push({ path: 'authority' })
+    redirectToCompaniesPage () {
+      this.$router.replace({ path: '/authority/companies' })
     },
     redirectToLoginPage () {
-      this.$router.push({ path: 'login' })
+      this.$router.replace({ path: '/login' })
     },
     refreshPage () {
       this.$router.go()

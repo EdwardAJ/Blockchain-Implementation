@@ -18,10 +18,6 @@
   border: 1px solid red;
 }
 
-.form-error + .form-control:focus {
-  border: 1px solid red;
-}
-
 .form .form-control::-moz-placeholder {
   color: #BFBFBF;
 }
@@ -98,6 +94,17 @@ input:focus {
   background-color:#4D4D4D;
 }
 
+.flex-display {
+  display: flex;
+}
+
 #btn-submit button:focus {
   outline: none;
+}
+
+.btn-search {
+  width: 6rem;
+  height: 2.25rem;
+  padding-left: 1rem;
+  margin-bottom: 0.65rem;
 }

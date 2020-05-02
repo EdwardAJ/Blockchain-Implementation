@@ -41,7 +41,8 @@ export default {
         if (auth.isAccountExist(currentAccounts)) {
           await owner.methods.isCurrentOwner().call({ from: currentAccounts[0] })
           this.currentAccount = currentAccounts[0]
-          console.log('CURRE: ', this.currentAccount)
+          if (this.$route.path === '/authority'|| this.$route.path === '/authority/')
+            this.redirectToCompaniesPage()
         } else {
           this.redirectToLoginPage()
         }
