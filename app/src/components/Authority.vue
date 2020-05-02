@@ -2,10 +2,13 @@
   <div class="container-fluid">
     <div class="row">
       <Sidebar />
-      <router-view
-        style="margin-left: 250px;"
-        class="child-background"
-      />
+      <div v-if="currentAccount !== ''" :key="currentAccount">
+        <router-view
+          style="margin-left: 250px;"
+          class="child-background"
+          :account="currentAccount"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -26,12 +29,19 @@ export default {
     Sidebar
   },
   mixins: [Redirect],
+  data () {
+    return {
+      currentAccount: ''
+    }
+  },
   async beforeMount () {
     if (web3) {
       try {
         var currentAccounts = await auth.getCurrentAccounts()
         if (auth.isAccountExist(currentAccounts)) {
           await owner.methods.isCurrentOwner().call({ from: currentAccounts[0] })
+          this.currentAccount = currentAccounts[0]
+          console.log('CURRE: ', this.currentAccount)
         } else {
           this.redirectToLoginPage()
         }
@@ -58,7 +68,7 @@ export default {
 <style scoped>
   .child-background {
     width: calc(100vw - 250px);
-    height: 100vh;
+    min-height: 100vh;
     background-color: #363636;
   }
 </style>

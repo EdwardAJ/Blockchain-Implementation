@@ -1,4 +1,4 @@
-.form {
+.form, .form-error {
   margin-top: -5px;
 }
 
@@ -86,7 +86,7 @@ input:focus {
 
 .btn-action {
   cursor: pointer;
-  border: 1px solid #65FF95;
+  border: 1px solid white;
   height: 2.3rem;
 }
 
@@ -96,4 +96,8 @@ input:focus {
 
 .btn-action:hover {
   background-color:#4D4D4D;
+}
+
+#btn-submit button:focus {
+  outline: none;
 }

@@ -37,3 +37,11 @@
 .table-striped>thead {
   font-family: 'Lato-Bold';
 }
+
+.max-width {
+  max-width: 200px;
+}
+
+.padding {
+  padding-right: 200px;
+}

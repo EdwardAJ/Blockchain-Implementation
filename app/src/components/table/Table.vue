@@ -7,7 +7,13 @@
              :items="rows"
              :fields="columns"
              class="table table-width table-borderless"
-    />
+    >
+    <template v-slot:cell(companyID)="row">
+      <div class="max-width height padding">
+        {{ row.item.companyID }}
+      </div>
+    </template>
+    </b-table>
     <!-- <slot name="content" /> -->
     <!-- <b-pagination
       v-model="currentPage"

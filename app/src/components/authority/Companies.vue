@@ -24,18 +24,32 @@
 </template>
 
 <script>
+
+import companies from '../../contract-instances/CompaniesInstance'
 import Table from '../table/Table'
+
+// Mixins:
+import Redirect from '../../mixins/redirect'
+import AccountProp from '../../mixins/accountProp'
+
 export default {
   components: {
     Table
   },
+  mixins: [Redirect, AccountProp],
+  async mounted () {
+    try {
+      console.log('Companies: ', companies)
+      var response = await companies.methods.getAllCompanies().call({ from: this.account })
+      this.showAllCompanies(response)
+    } catch (error) {
+      console.log(error)
+      this.redirectToLoginPage()
+    }
+  },
   data () {
     return {
       columns: [
-        {
-          key: 'companyID',
-          label: 'Company ID'
-        },
         {
           key: 'name',
           label: 'Name'
@@ -47,9 +61,27 @@ export default {
         {
           key: 'phoneNumber',
           label: 'Phone Number'
+        },
+        {
+          key: 'companyID',
+          label: 'Company ID'
         }
       ],
       rows: []
+    }
+  },
+  methods: {
+    showAllCompanies (companiesArray) {
+      this.rows = []
+      companiesArray.forEach((company) => {
+        let companyObj = {
+          name: company[1],
+          address: company[2],
+          phoneNumber: company[3],
+          companyID: company[0]
+        }
+        this.rows.push(companyObj)
+      })
     }
   }
 }

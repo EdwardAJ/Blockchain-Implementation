@@ -15,8 +15,8 @@
         >
       </div>
       <div class="row">
-        <div v-if="isDataEmpty && isFormDirty">
-          <p class="form-error"> 
+        <div v-if="isDataEmpty && isFormDirty" :key="showError">
+          <p class="form-error animated fadeIn"> 
             {{ name }} cannot be empty.
           </p>
         </div>
@@ -30,6 +30,10 @@ export default {
     name: {
       type: String,
       required: true
+    },
+    showError: {
+      type: Boolean,
+      required: false
     }
   },
   data () {
@@ -42,10 +46,18 @@ export default {
     isDataEmpty () {
       return this.data === ''
     }
+  },
+  watch: {
+    showError (val) {
+      if (val) {
+        this.isFormDirty = true
+      }
+    }
   }
 }
 </script>
 
 <style>
   @import '../../../static/css/input.css';
+  @import '../../../static/css/transitions.css';
 </style>

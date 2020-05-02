@@ -5,6 +5,9 @@ export default {
     },
     redirectToLoginPage () {
       this.$router.push({ path: 'login' })
+    },
+    refreshPage () {
+      this.$router.go()
     }
   }
 }

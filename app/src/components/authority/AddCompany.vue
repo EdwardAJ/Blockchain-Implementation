@@ -4,19 +4,19 @@
       <div class="row">
         <div class="col">
           <h5 class="page-title page-title-margin"> 
-            Add Company {{ companyName }}
+            Add Company
           </h5>
         </div>
       </div>
       <div class="mt-4 animated fadeIn">
-        <Input ref="name" name="Company Name" class="mt-4" />
-        <Input ref="address" name="Company Address" />
-        <Input ref="phone" name="Company Phone Number" />
+        <Input ref="name" :show-error="showError" name="Company Name" class="mt-4" />
+        <Input ref="address" :show-error="showError" name="Company Address" />
+        <Input ref="phone" :show-error="showError" name="Company Phone Number" />
       </div>
       <div class="row mt-3">
-        <div class="col">
+        <div id="btn-submit" class="col">
           <button
-            :class="['btn-border', isUsernameEmpty ? 'btn-disabled': 'btn-action', 'field-length', 'form-content']" @click="handleOnSubmit()"
+            :class="['btn-border', 'btn-action', 'field-length', 'form-content']" @click="handleOnSubmit()"
           > 
             <p class="btn-content">
               Add Company
@@ -33,22 +33,40 @@
 import companies from '../../contract-instances/CompaniesInstance'
 import Input from '../form/Input'
 
+// Mixins:
+import Redirect from '../../mixins/redirect'
+import AccountProp from '../../mixins/accountProp'
+
 export default {
   components: {
     Input
   },
-  computed: {
-    companyName () {
-      console.log(this.$refs['address'])
-      if (this.$refs.address) {
-        // console.log(this.$refs.address)
-        return this.$refs.address
-      }
-    }
-  },
+  mixins: [Redirect, AccountProp],
   data () {
     return {
-      
+      showError: false
+    }
+  },
+  methods: {
+    handleOnSubmit () {
+      this.showError = !this.showError
+      var companyName = this.$refs.name.data
+      var companyAddr = this.$refs.address.data
+      var companyPhone = this.$refs.phone.data
+      if (this.isAttributeNotEmpty(companyName) && this.isAttributeNotEmpty(companyAddr) && this.isAttributeNotEmpty(companyPhone)) {
+        this.addCompany(companyName, companyAddr, companyPhone)
+      }
+    },
+    isAttributeNotEmpty (attr) {
+      return attr !== ''
+    },
+    async addCompany (companyName, companyAddr, companyPhone) {
+      try {
+        var response = await companies.methods.addCompany(companyName, companyAddr, companyPhone).send({ from: this.account })
+        this.refreshPage()
+      } catch (error) {
+        this.redirectToLoginPage()
+      }
     }
   }
 }
