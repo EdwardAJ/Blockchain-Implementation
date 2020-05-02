@@ -26,14 +26,14 @@
           <p class="col not-found animated fadeIn"> Company Not Found </p>
         </div>
         <div v-else-if="companyName">
-          <h5 class="page-title animated fadeIn invoices-title-margin"> 
+          <h5 class="page-title invoices-title-margin  animated fadeIn"> 
             Invoices Of {{ companyName }}
           </h5>
         </div>
       </div>
-      <div class="row mt-2" :key="invoiceNotFound">
+      <div class="row mt-2 animated fadeIn" :key="invoiceNotFound">
         <div v-if="invoiceNotFound">
-          <p class="col not-found animated fadeIn"> Invoice Not Found </p>
+          <p class="col not-found"> Invoice Not Found </p>
         </div>
         <div v-else class="col table-margin-left">
           <div class="row mt-4">

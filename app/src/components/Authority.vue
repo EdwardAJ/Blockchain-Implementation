@@ -34,25 +34,8 @@ export default {
       currentAccount: ''
     }
   },
-  async beforeMount () {
-    if (web3) {
-      try {
-        var currentAccounts = await auth.getCurrentAccounts()
-        if (auth.isAccountExist(currentAccounts)) {
-          await owner.methods.isCurrentOwner().call({ from: currentAccounts[0] })
-          this.currentAccount = currentAccounts[0]
-          if (this.$route.path === '/authority'|| this.$route.path === '/authority/')
-            this.redirectToCompaniesPage()
-        } else {
-          this.redirectToLoginPage()
-        }
-      } catch (error) {
-        this.showError(error)
-        this.redirectToLoginPage()
-      }
-    } else {
-      this.redirectToLoginPage()
-    }
+  async beforeMount() {
+    await this.handleAuth()
   },
   methods: {
     showError (error) {
@@ -61,6 +44,31 @@ export default {
       } else {
         alert('An Error Occured. Please Login')
       }
+    },
+    async handleAuth () {
+      if (web3) {
+        try {
+          var currentAccounts = await auth.getCurrentAccounts()
+          if (auth.isAccountExist(currentAccounts)) {
+            await owner.methods.isCurrentOwner().call({ from: currentAccounts[0] })
+            this.currentAccount = currentAccounts[0]
+            if (this.$route.path === '/authority'|| this.$route.path === '/authority/')
+              this.redirectToCompaniesPage()
+          } else {
+            this.redirectToLoginPage()
+          }
+        } catch (error) {
+          this.showError(error)
+          this.redirectToLoginPage()
+        }
+      } else {
+        this.redirectToLoginPage()
+      }
+    }
+  },
+  watch: {
+    async $route (to, from) {
+      await this.handleAuth()
     }
   }
 }
