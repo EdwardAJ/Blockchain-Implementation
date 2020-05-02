@@ -10,60 +10,23 @@
       </div>
       <div class="row mt-2">
         <div class="col">
-          <Table
-            :prop-rows="rows"
-            :prop-columns="columns"
-          />
+          
         </div>
       </div>
+      <Input name="Company Name" />
     </div>
   </div>
 </template>
 
 <script>
-import Table from '../table/Table'
+
+import companies from '../../contract-instances/CompaniesInstance'
+import Input from '../form/Input'
+
 export default {
-  components: {
-    Table
-  },
   data () {
     return {
-      columns: [
-        {
-          key: 'companyID',
-          label: 'Company ID',
-          sortable: true
-        },
-        {
-          key: 'name',
-          label: 'Name',
-          sortable: true
-        },
-        {
-          key: 'address',
-          label: 'Address',
-          sortable: true
-        },
-        {
-          key: 'phoneNumber',
-          label: 'Phone Number',
-          sortable: true
-        }
-      ],
-      rows: [
-        {
-          companyID: 'asdda',
-          name: 'Aing',
-          address: 'Jl. asdad',
-          phoneNumber: '08222'
-        },
-        {
-          companyID: 'asdda',
-          name: 'Aing',
-          address: 'Jl. asdad',
-          phoneNumber: '08222'
-        }
-      ]
+      
     }
   }
 }

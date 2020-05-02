@@ -1,0 +1,39 @@
+.form-title, .form-content, .btn-content, .form-error {
+  font-size: 0.85rem;
+  color: #1E889B;
+  letter-spacing: 0.025rem;
+
+  font-family: 'Open Sans Regular';
+}
+
+.form-error {
+  color: red;
+  font-size: 0.7rem;
+  font-family: 'Open Sans Bold';
+}
+
+.btn-content {
+  color: white;
+  margin-top: 5px; 
+  margin-left: -5px;
+}
+
+.form-title-margin {
+  margin-top: -5px;
+}
+
+.field-length {
+  width: 16.5rem;
+  height: 2.25rem;
+  padding-left: 1rem;
+  margin-bottom: 0.65rem;
+}
+
+.form-border, .btn-border, .form-border-error {
+  border-radius: 8px;
+  border: 1px solid #1E889B;
+}
+
+.form-border-error {
+  border: 1px solid red;
+}

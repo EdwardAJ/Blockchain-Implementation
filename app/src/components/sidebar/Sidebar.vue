@@ -19,7 +19,7 @@
       <!-- All Companies -->
       <b-nav-item
         link-classes="side-bar-color mt-4 ml-4"
-        @click="changeActiveElmtID('companies')"
+        @click="handleNewActiveElmtID('companies')"
       >
         <div id="companies">
           All Companies
@@ -28,7 +28,7 @@
       <!-- Add Company -->
       <b-nav-item
         link-classes="side-bar-color mt-3 ml-4"
-        @click="changeActiveElmtID('add-company')"
+        @click="handleNewActiveElmtID('add-company')"
       >
         <div id="add-company">
           Add Company
@@ -37,7 +37,7 @@
       <!-- All Invoices -->
       <b-nav-item
         link-classes="side-bar-color mt-3 ml-4"
-        @click="changeActiveElmtID('invoices')"
+        @click="handleNewActiveElmtID('invoices')"
       >
         <div id="invoices">
           All Invoices
@@ -46,7 +46,7 @@
       <!-- Add Invoices -->
       <b-nav-item
         link-classes="side-bar-color mt-3 ml-4"
-        @click="changeActiveElmtID('add-invoice')"
+        @click="handleNewActiveElmtID('add-invoice')"
       >
         <div id="add-invoice">
           Add Invoice
@@ -80,6 +80,9 @@ export default {
     },
     changeActiveElmtID (elmtID) {
       this.activeElmtID = elmtID
+    },
+    handleNewActiveElmtID (elmtID) {
+      this.changeActiveElmtID(elmtID)
       this.redirectRoute(elmtID)
     },
     redirectRoute (elmtID) {
@@ -106,6 +109,8 @@ export default {
         elmtID = 'add-company'
       } else if((/^\/authority\/invoices(\/|(\?)|$)/.test(browserURL))){
         elmtID = 'invoices'
+      } else if((/^\/authority\/add-invoice(\/|(\?)|$)/.test(browserURL))) {
+        elmtID = 'add-invoice'
       }
       this.changeActiveElmtID(elmtID)
       this.setClass(elmtID, 'active')
