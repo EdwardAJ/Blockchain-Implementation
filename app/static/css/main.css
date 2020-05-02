@@ -12,3 +12,14 @@
 .not-found {
   color: white;
 }
+
+.invoices-title-margin {
+  margin-left: 13px;
+}
+
+.invoices-status {
+  font-family: 'Lato-Light';
+  letter-spacing: 0.025rem;
+  margin-left: 10px;
+  color: white;
+}

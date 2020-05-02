@@ -26,17 +26,32 @@
           <p class="col not-found animated fadeIn"> Company Not Found </p>
         </div>
         <div v-else-if="companyName">
-          <h5 class="page-title ml-3 animated fadeIn"> 
+          <h5 class="page-title animated fadeIn invoices-title-margin"> 
             Invoices Of {{ companyName }}
           </h5>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-2" :key="invoiceNotFound">
         <div v-if="invoiceNotFound">
           <p class="col not-found animated fadeIn"> Invoice Not Found </p>
         </div>
-        <div v-else>
-
+        <div v-else class="col table-margin-left">
+          <div class="row mt-4">
+            <p class="col invoices-status"> Unpaid Invoices: </p>
+          </div>
+          <Table
+            v-if="rowsUnpaid.length > 0"
+            :prop-rows="rowsUnpaid"
+            :prop-columns="columns"
+          />
+          <div class="row mt-4">
+            <p class="col invoices-status"> Paid Invoices: </p>
+          </div>
+          <Table
+            v-if="rowsPaid.length > 0"
+            :prop-rows="rowsPaid"
+            :prop-columns="columns"
+          />
         </div>
       </div>
     </div>
@@ -59,7 +74,8 @@ import CompanyIDInput from '../../mixins/inputCompanyID'
 
 export default {
   components: {
-    Input
+    Input,
+    Table
   },
   mixins: [Redirect, AccountProp, CompanyIDInput],
   data () {
@@ -78,7 +94,7 @@ export default {
       rowsUnpaid: [],
       showError: false,
       companyName: '',
-      invoiceNotFound: false
+      invoiceNotFound: true
     }
   },
   methods: {
@@ -110,13 +126,27 @@ export default {
     showInvoices (invoicesArray) {
       this.rowsPaid = []
       this.rowsUnpaid = []
+      this.invoiceNotFound = false
       console.log('Invoices array: ', invoicesArray)
       //TODO
+      invoicesArray.forEach((invoice) => {
+        let invoiceObj = {
+          invoiceID: invoice[0],
+          amount: invoice[1]
+        }
+        // Paid invoice
+        if (invoice[2]) {
+          this.rowsPaid.push(invoiceObj)
+        } else {
+          this.rowsUnpaid.push(invoiceObj)
+        }
+      })
+      console.log('rowsUnpaid: ', this.rowsUnpaid)
     },
     resetAttributes () {
       this.resetCompanyIDAttributes()
       this.companyName = ''
-      this.invoiceNotFound = false
+      this.invoiceNotFound = true
     }
   }
 }
