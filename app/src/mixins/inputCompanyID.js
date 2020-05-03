@@ -1,5 +1,6 @@
 import Byte32Input from './inputTypeByte32'
-import companies from '../contract-instances/CompaniesInstance'
+import { getCompanyByIDFromContract } from '../utils/companies'
+
 
 export default {
   data () {
@@ -12,7 +13,7 @@ export default {
   methods: {
     async getCompanyByID (companyID) {
       try {
-        var company = await companies.methods.getCompanyByID(companyID).call()
+        var company = await getCompanyByIDFromContract(companyID)
         this.showCompanyName(company[0])
       } catch (error) {
         if (error.message.includes('Company is not found')) {
@@ -27,7 +28,6 @@ export default {
     },
     async showCompanyNotFound () {
       this.errorMessage = 'Company Not Found'
-      console.log('errrr: ', this.errorMessage)
       this.companyNotFound = true
     },
     showBytes32Error () {

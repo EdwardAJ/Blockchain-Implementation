@@ -65,7 +65,7 @@ export default {
           if (this.companyName !== '') {
             // Set cookie and redirect to user page
             auth.setCookie(companyID, this.companyName)
-            this.redirectToUserPage()
+            this.redirectToUserInvoicesPage()
           }
         }
       }

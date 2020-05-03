@@ -9,8 +9,8 @@ export default {
     refreshPage () {
       this.$router.go()
     },
-    redirectToUserPage () {
-      this.$router.replace({ path: '/user' })
+    redirectToUserInvoicesPage () {
+      this.$router.replace({ path: '/user/invoices' })
     }
   }
 }

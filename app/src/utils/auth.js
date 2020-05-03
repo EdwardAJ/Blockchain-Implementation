@@ -26,9 +26,9 @@ export function deleteCookie () {
 }
 
 export function getCompanyID () {
-  cookies.get('CompanyID')
+  return cookies.get('CompanyID')
 }
 
 export function getCompanyName () {
-  cookies.get('CompanyName')
+  return cookies.get('CompanyName')
 }

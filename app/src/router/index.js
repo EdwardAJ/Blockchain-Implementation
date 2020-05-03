@@ -11,6 +11,7 @@ import Login from '@/components/Login'
 import Authority from '@/components/Authority'
 import Companies from '@/components/authority/Companies'
 import Invoices from '@/components/authority/Invoices'
+import UserInvoices from '@/components/user/UserInvoices'
 import AddCompany from '@/components/authority/AddCompany'
 import AddInvoice from '@/components/authority/AddInvoice'
 
@@ -33,7 +34,8 @@ const router = new Router({
       component: User,
       children: [
         {
-          path: ''
+          path: 'invoices',
+          component: UserInvoices
         }
       ]
     },
