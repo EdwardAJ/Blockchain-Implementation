@@ -127,8 +127,7 @@ export default {
       this.rowsPaid = []
       this.rowsUnpaid = []
       this.invoiceNotFound = false
-      console.log('Invoices array: ', invoicesArray)
-      //TODO
+      
       invoicesArray.forEach((invoice) => {
         let invoiceObj = {
           invoiceID: invoice[0],

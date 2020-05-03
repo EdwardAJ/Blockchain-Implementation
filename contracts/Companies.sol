@@ -44,7 +44,7 @@ contract Companies is Owner {
         return (companiesList[companyIdx]._name, companiesList[companyIdx]._address, companiesList[companyIdx]._phoneNumber);
     }
     
-    function getCompaniesCount() public view onlyOwner returns (uint) {
+    function getCompaniesCount() public view returns (uint) {
         return companiesList.length;
     }
     

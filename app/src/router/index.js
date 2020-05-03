@@ -14,6 +14,9 @@ import Invoices from '@/components/authority/Invoices'
 import AddCompany from '@/components/authority/AddCompany'
 import AddInvoice from '@/components/authority/AddInvoice'
 
+// Import owner
+import owner from '../contract-instances/OwnerInstance'
+
 // Import utility functions
 import * as auth from '../utils/auth'
 
@@ -62,20 +65,26 @@ const router = new Router({
 router.beforeEach(async (to, from, next) => {
   var currentAccounts = await auth.getCurrentAccounts()
   // Path needs authorization
-  if (to.path !== '/login') {
+  if (to.path !== '/login' && to.path !== '/') {
     if (web3 && auth.isAccountExist(currentAccounts)) {
       next()
     } else {
       next({ path: '/login' })
     }
   } else {
-    // Path does not need authorization
-    // if (web3 && auth.isAccountExist(currentAccounts)) {
-    //   next({ path: '/'})
-    // } else {
-    //   next()
-    // }
-    next()
+    if (web3) {
+      try {
+        var currentAccounts = await auth.getCurrentAccounts()
+        if (auth.isAccountExist(currentAccounts)) {
+          await owner.methods.isCurrentOwner().call({ from: currentAccounts[0] })
+          next({ path: '/authority/companies'})
+        }
+      } catch (error) {
+        next()
+      }
+    } else {
+      next()
+    }
   }
 })
 

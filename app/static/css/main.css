@@ -23,3 +23,14 @@
   margin-left: 10px;
   color: white;
 }
+
+.center {
+  align-items: center;
+  display: flex;
+}
+
+.bg-login {
+  width: 100vw;
+  height: 100vh;
+  background-color: #363636;
+}

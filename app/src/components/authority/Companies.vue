@@ -39,11 +39,9 @@ export default {
   mixins: [Redirect, AccountProp],
   async mounted () {
     try {
-      console.log('Companies: ', companies)
       var response = await companies.methods.getAllCompanies().call({ from: this.account })
       this.showAllCompanies(response)
     } catch (error) {
-      console.log(error)
       this.redirectToLoginPage()
     }
   },
