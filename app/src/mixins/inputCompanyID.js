@@ -10,9 +10,9 @@ export default {
   },
   mixins: [Byte32Input],
   methods: {
-    async getCompanyByID (companyID, account) {
+    async getCompanyByID (companyID) {
       try {
-        var company = await companies.methods.getCompanyByID(companyID).call({ from: account })
+        var company = await companies.methods.getCompanyByID(companyID).call()
         this.showCompanyName(company[0])
       } catch (error) {
         if (error.message.includes('Company is not found')) {

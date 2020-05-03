@@ -69,7 +69,7 @@ export default {
       var amount = this.$refs.amount.data
       if (isAttributeNotEmpty(companyID) && isAttributeNotEmpty(amount)) {
         // Check if company valid, with function called from Mixin
-        await this.getCompanyByID(companyID, this.account)
+        await this.getCompanyByID(companyID)
         if (!this.companyNotFound) {
           await this.addInvoice(companyID, amount, this.account)
         } else {
