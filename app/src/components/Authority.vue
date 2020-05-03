@@ -74,10 +74,6 @@ export default {
 }
 </script>
 
-<style scoped>
-  .child-background {
-    width: calc(100vw - 250px);
-    min-height: 100vh;
-    background-color: #363636;
-  }
+<style>
+  @import '../../static/css/main.css';
 </style>

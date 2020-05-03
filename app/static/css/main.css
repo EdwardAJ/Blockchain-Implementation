@@ -39,3 +39,9 @@
   margin-left: calc(50vw - 8.25rem);
   margin-top: -3.5rem;
 }
+
+.child-background {
+  width: calc(100vw - 250px);
+  min-height: 100vh;
+  background-color: #363636;
+}

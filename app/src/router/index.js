@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 // Import components
-import Main from '@/components/Main'
+import User from '@/components/User'
 import Login from '@/components/Login'
 import Authority from '@/components/Authority'
 import Companies from '@/components/authority/Companies'
@@ -28,9 +28,14 @@ const router = new Router({
   hash: false,
   routes: [
     {
-      path: '/',
-      name: 'Main',
-      component: Main
+      path: '/user',
+      name: 'User',
+      component: User,
+      children: [
+        {
+          path: ''
+        }
+      ]
     },
     {
       path: '/authority/',

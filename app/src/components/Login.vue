@@ -63,8 +63,9 @@ export default {
           // getCompanyID is Mixin method
           await this.getCompanyByID(companyID, this.account)
           if (this.companyName !== '') {
-            // Redirect to user page
-            this.redirectToUserPage(this.companyName)
+            // Set cookie and redirect to user page
+            auth.setCookie(companyID, this.companyName)
+            this.redirectToUserPage()
           }
         }
       }
