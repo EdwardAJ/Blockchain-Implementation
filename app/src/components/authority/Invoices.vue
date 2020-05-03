@@ -93,7 +93,6 @@ export default {
       rowsPaid: [],
       rowsUnpaid: [],
       showError: false,
-      companyName: '',
       invoiceNotFound: true
     }
   },
@@ -120,14 +119,11 @@ export default {
     showInvoiceNotFound () {
       this.invoiceNotFound = true
     },
-    showCompanyName (companyName) {
-      this.companyName = companyName
-    },
     showInvoices (invoicesArray) {
       this.rowsPaid = []
       this.rowsUnpaid = []
       this.invoiceNotFound = false
-      
+
       invoicesArray.forEach((invoice) => {
         let invoiceObj = {
           invoiceID: invoice[0],

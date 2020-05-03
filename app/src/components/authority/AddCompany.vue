@@ -55,7 +55,7 @@ export default {
       var companyName = this.$refs.name.data
       var companyAddr = this.$refs.address.data
       var companyPhone = this.$refs.phone.data
-      if (isAttributeNotEmpty(companyName) && this.isAttributeNotEmpty(companyAddr) && this.isAttributeNotEmpty(companyPhone)) {
+      if (isAttributeNotEmpty(companyName) && isAttributeNotEmpty(companyAddr) && isAttributeNotEmpty(companyPhone)) {
         this.addCompany(companyName, companyAddr, companyPhone)
       }
     },

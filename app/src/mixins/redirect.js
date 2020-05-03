@@ -8,6 +8,9 @@ export default {
     },
     refreshPage () {
       this.$router.go()
+    },
+    redirectToUserPage (username) {
+      this.$router.replace({ path: '/user/' + username})
     }
   }
 }

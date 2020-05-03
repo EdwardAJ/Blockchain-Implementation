@@ -10,13 +10,13 @@ Starting migrations...
 
    Replacing 'Migrations'
    ----------------------
-   > transaction hash:    0x3132e36a1ba46a6527892e7ca5c79c4114dc852bc61e3d0c3e3dda83a2826289
+   > transaction hash:    0xbc219d3899bb86fcacf1e327221c1b951177bb1090b494e85d2a8121aa77ed15
    > Blocks: 0            Seconds: 0
-   > contract address:    0x6FCE2df5be46D0ab6E707F117A1C28e0E70d8083
-   > block number:        18
-   > block timestamp:     1588354278
+   > contract address:    0x67D5b35f79D58263051B4220E39DDeAFf4A92D2d
+   > block number:        39
+   > block timestamp:     1588494683
    > account:             0xdbFE67093c45622Bb4fC55181c40E745f82d7fa8
-   > balance:             99.91395818
+   > balance:             99.78363658
    > gas used:            188483
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -34,23 +34,23 @@ Starting migrations...
 
    Replacing 'Companies'
    ---------------------
-   > transaction hash:    0x043f4741b06b9c3c37ef930afb0a1077592616927bea1a814e87e0eaa494695f
+   > transaction hash:    0x003f21087519b7e7e0986aa5aaa783e504d47d1e9fdc9a0abcf55ff758569232
    > Blocks: 0            Seconds: 0
-   > contract address:    0x09b8e78a0854Fa613E466E126390f373a66553B3
-   > block number:        20
-   > block timestamp:     1588354279
+   > contract address:    0xF041F74882221eA68c662A86EDF965FD4927B982
+   > block number:        41
+   > block timestamp:     1588494683
    > account:             0xdbFE67093c45622Bb4fC55181c40E745f82d7fa8
-   > balance:             99.88849732
-   > gas used:            1231042
+   > balance:             99.75890446
+   > gas used:            1194605
    > gas price:           20 gwei
    > value sent:          0 ETH
-   > total cost:          0.02462084 ETH
+   > total cost:          0.0238921 ETH
 
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.02462084 ETH
+   > Total cost:           0.0238921 ETH
 
 
 3_migrate_Invoicing.js
@@ -58,13 +58,13 @@ Starting migrations...
 
    Replacing 'Invoicing'
    ---------------------
-   > transaction hash:    0x31bf9b21becdc89980d001a587b2ece1049fc895d9c5fff9c6a0da0078df9aca
+   > transaction hash:    0x5112638d08272688d7b59d948930c6893e352b3ad026c4be6774f56d5471fc0a
    > Blocks: 0            Seconds: 0
-   > contract address:    0x328225F6d09f3F0e12DCf9936e0AfB466E570941
-   > block number:        22
-   > block timestamp:     1588354279
+   > contract address:    0x8654C610a2302a4A37634E3D900239306abffC6B
+   > block number:        43
+   > block timestamp:     1588494684
    > account:             0xdbFE67093c45622Bb4fC55181c40E745f82d7fa8
-   > balance:             99.86933696
+   > balance:             99.7397441
    > gas used:            931017
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -82,13 +82,13 @@ Starting migrations...
 
    Replacing 'Owner'
    -----------------
-   > transaction hash:    0xd3c5a1d12f2f804dd0ea8d1c19d7cc6f04c214264f39007a91af9d5c22ce4be7
+   > transaction hash:    0xdb6522d5b2b3ef3182617424a6d6747156d080201ed8ed603a76340cf3ebf427
    > Blocks: 0            Seconds: 0
-   > contract address:    0x91a04F97C759635B3E112cC84370a85dd31F127c
-   > block number:        24
-   > block timestamp:     1588354280
+   > contract address:    0x000696FB9668704dcE7F0CfC98FE96be686FfdbF
+   > block number:        45
+   > block timestamp:     1588494684
    > account:             0xdbFE67093c45622Bb4fC55181c40E745f82d7fa8
-   > balance:             99.86547408
+   > balance:             99.73588122
    > gas used:            166143
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -104,4 +104,7 @@ Starting migrations...
 Summary
 =======
 > Total deployments:   4
-> Final cost:          0.0503337 ETH
+> Final cost:          0.04960496 ETH
+
+
+0x66630dd25f187a8c5b9f3748dc5fbc10c20759632acf1433e0df561e5bcb250b

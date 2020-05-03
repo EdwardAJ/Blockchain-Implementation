@@ -4,7 +4,8 @@ import companies from '../contract-instances/CompaniesInstance'
 export default {
   data () {
     return {
-      companyNotFound: false
+      companyNotFound: false,
+      companyName: ''
     }
   },
   mixins: [Byte32Input],
@@ -20,6 +21,9 @@ export default {
           this.showBytes32Error()
         }
       }
+    },
+    showCompanyName (companyName) {
+      this.companyName = companyName
     },
     async showCompanyNotFound () {
       this.errorMessage = 'Company Not Found'

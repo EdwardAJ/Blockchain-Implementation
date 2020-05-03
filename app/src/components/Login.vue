@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row bg-login center">
-      <div class="col">
+      <div class="col center-inside">
         <div class="row">
           <div class="col">
             <Input
@@ -52,23 +52,26 @@ export default {
   mixins: [Redirect, CompanyIDInput],
   methods: {
     async handleOnSubmit () {
+      this.resetAttributes()
       // Get account address
       var currentAccounts = await auth.getCurrentAccounts()
       if (auth.isAccountExist(currentAccounts)) {
         this.account = currentAccounts[0]
-        this.resetAttributes()
         this.showError = !this.showError
         var companyID = this.$refs.companyID.data
         if (auth.isAttributeNotEmpty(companyID)) {
           // getCompanyID is Mixin method
           await this.getCompanyByID(companyID, this.account)
+          if (this.companyName !== '') {
+            // Redirect to user page
+            this.redirectToUserPage(this.companyName)
+          }
         }
       }
     },
     resetAttributes () {
       this.resetCompanyIDAttributes()
       this.companyName = ''
-      this.invoiceNotFound = true
     }
   }
 }

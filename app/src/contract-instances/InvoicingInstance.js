@@ -1,7 +1,7 @@
 import web3 from './web3.js'
 import Invoicing from '../../../build/contracts/Invoicing'
 
-const contractAddress = '0x328225F6d09f3F0e12DCf9936e0AfB466E570941'
+const contractAddress = '0x8654C610a2302a4A37634E3D900239306abffC6B'
 var instance = null
 
 if (web3) {
