@@ -1,6 +1,7 @@
 // Import dependencies
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -14,6 +15,7 @@ import Invoices from '@/components/authority/Invoices'
 import UserInvoices from '@/components/user/UserInvoices'
 import AddCompany from '@/components/authority/AddCompany'
 import AddInvoice from '@/components/authority/AddInvoice'
+import PayInvoice from '@/components/user/PayInvoice'
 
 // Import owner
 import owner from '../contract-instances/OwnerInstance'
@@ -36,6 +38,10 @@ const router = new Router({
         {
           path: 'invoices',
           component: UserInvoices
+        },
+        {
+          path: 'pay-invoice',
+          component: PayInvoice
         }
       ]
     },

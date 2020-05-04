@@ -13,6 +13,8 @@
 <script>
 
 import owner from '../contract-instances/OwnerInstance'
+import eventReader from '../contract-instances/EventReaderInstance'
+
 import * as auth from '../utils/auth'
 import { getCompanyByIDFromContract } from '../utils/companies'
 
@@ -37,6 +39,11 @@ export default {
   },
   mounted () {
     this.companyName = auth.getCompanyName()
+
+    eventReader.events.InvoiceAdded({}, (error, event) => {
+      // console.log("Event: ", event)
+    })
+
     window.ethereum.on('accountsChanged', (accounts) => {
       auth.deleteCookie()
       this.redirectToLoginPage()
@@ -67,7 +74,7 @@ export default {
       var companyID = auth.getCompanyID()
       try {
         var company = await getCompanyByIDFromContract(companyID)
-        if (this.$route.path === '/user'|| this.$route.path === '/users/') {
+        if (this.$route.path === '/user'|| this.$route.path === '/user/') {
           this.redirectToUserInvoicesPage()
         }
       } catch (error) {

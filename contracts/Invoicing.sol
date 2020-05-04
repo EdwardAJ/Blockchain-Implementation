@@ -16,7 +16,7 @@ contract Invoicing is Owner {
     mapping (bytes32 => mapping (bytes32 => Invoice)) invoicesList;
     mapping(bytes32 => Invoice[]) allInvoicesByCompany;
     
-    event InvoiceAdded(bytes32 _hashId);
+    event InvoiceAdded(bytes32 _hashId, bytes32 _payeeID);
     
     // for authority to add invoice
     function addInvoice(bytes32 _payeeID, uint256 _amountToPay) public onlyOwner {
@@ -24,7 +24,7 @@ contract Invoicing is Owner {
         hashID = keccak256(abi.encodePacked(_payeeID, _amountToPay));
         invoicesList[_payeeID][hashID] = Invoice(hashID, _amountToPay, false, true);
         allInvoicesByCompany[_payeeID].push(Invoice(hashID, _amountToPay, false, true));
-        emit InvoiceAdded(hashID);
+        emit InvoiceAdded(hashID, _payeeID);
     }
     
     // for companies

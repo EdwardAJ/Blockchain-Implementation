@@ -15,8 +15,11 @@
 
 <script>
 
+import invoicing from '../contract-instances/InvoicingInstance'
 import owner from '../contract-instances/OwnerInstance'
 import * as auth from '../utils/auth'
+
+import eventReader from '../contract-instances/EventReaderInstance'
 
 // Redirect functions
 import Redirect from '../mixins/redirect'
@@ -38,6 +41,13 @@ export default {
     await this.handleAuth()
   },
   mounted () {
+    eventReader.events.InvoiceAdded({}, (error, event) => {
+      // Fires when there exists new generated invoice
+      console.log("Event: ", event)
+      alert('Invoice ID generated: ' + event.returnValues[0])
+      this.refreshPage()
+    })
+
     window.ethereum.on('accountsChanged', (accounts) => {
       this.handleAuth()
     })

@@ -36,14 +36,14 @@ import Input from '../form/Input'
 import { isAttributeNotEmpty } from '../../utils/auth'
 
 // Mixins:
-import Redirect from '../../mixins/redirect'
+import ErrorHandler from '../../mixins/errorHandler'
 import AccountProp from '../../mixins/accountProp'
 
 export default {
   components: {
     Input
   },
-  mixins: [Redirect, AccountProp],
+  mixins: [ErrorHandler, AccountProp],
   data () {
     return {
       showError: false
@@ -64,7 +64,7 @@ export default {
         var response = await companies.methods.addCompany(companyName, companyAddr, companyPhone).send({ from: this.account })
         this.refreshPage()
       } catch (error) {
-        this.redirectToLoginPage()
+        this.handleError(error)
       }
     }
   }

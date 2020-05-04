@@ -47,7 +47,7 @@ import Input from '../form/Input'
 import { isAttributeNotEmpty } from '../../utils/auth'
 
 // Mixins:
-import ErrorHandler from '../../mixins/errorHandler'
+import Redirect from '../../mixins/redirect'
 import AccountProp from '../../mixins/accountProp'
 import CompanyIDInput from '../../mixins/inputCompanyID'
 
@@ -55,7 +55,7 @@ export default {
   components: {
     Input
   },
-  mixins: [ErrorHandler, AccountProp, CompanyIDInput],
+  mixins: [Redirect, AccountProp, CompanyIDInput],
   data () {
     return {
       typeNum: true,
@@ -80,9 +80,11 @@ export default {
     async addInvoice (companyID, amount, account) {
       try {
         var response = await invoicing.methods.addInvoice(companyID, amount).send({ from: account })
-        // this.refreshPage()
+        this.refreshPage()
       } catch (error) {
-        this.handleError(error)
+        if (error.message.includes('Unauthorized')) {
+          this.redirectToLoginPage()
+        }
       }
     },
     resetAttributes () {

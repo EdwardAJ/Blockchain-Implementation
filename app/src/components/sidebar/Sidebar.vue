@@ -78,7 +78,6 @@ export default {
   methods: {
     setClass (elmtID, className) {
       let elmt = document.getElementById(elmtID)
-      this.$refs.companies.class = className
       elmt.className = className
     },
     changeActiveElmtID (elmtID) {

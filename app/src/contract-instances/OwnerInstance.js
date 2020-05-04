@@ -1,7 +1,7 @@
 import web3 from './web3.js'
 import Owner from '../../../build/contracts/Owner'
 
-const contractAddress = '0x000696FB9668704dcE7F0CfC98FE96be686FfdbF'
+const contractAddress = Owner.networks['5777'].address
 var instance = null
 
 if (web3) {
