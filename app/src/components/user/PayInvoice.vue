@@ -39,6 +39,7 @@ import invoicing from '../../contract-instances/InvoicingInstance'
 import Input from '../form/Input'
 import * as auth from '../../utils/auth'
 import * as invoicingUtils from '../../utils/invoicing'
+import * as pay from '../../utils/pay'
 
 // Mixins:
 import Redirect from '../../mixins/redirect'
@@ -80,8 +81,8 @@ export default {
       console.log('Amount: ', amount)
       try {
         var ethToIDRRate = await invoicingUtils.getEthereumToIDRRate()
-        console.log(ethToIDRRate)
-        console.log(invoicingUtils.convertIDRToEth(amount, ethToIDRRate))
+        var ethAmount = invoicingUtils.convertIDRToEth(amount, ethToIDRRate)
+        pay.sendEthereum(invoicingUtils.ownerAddress, ethAmount)
         // var response = await invoicing.methods.addInvoice(companyID, amount).send({ from: account })
         // this.refreshPage()
       } catch (error) {
