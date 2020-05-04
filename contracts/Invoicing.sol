@@ -17,6 +17,7 @@ contract Invoicing is Owner {
     mapping(bytes32 => Invoice[]) allInvoicesByCompany;
     
     event InvoiceAdded(bytes32 _hashId, bytes32 _payeeID);
+    event InvoicePaid(bytes32 _hashId, bytes32 _payeeID);
     
     // for authority to add invoice
     function addInvoice(bytes32 _payeeID, uint256 _amountToPay) public onlyOwner {
@@ -31,7 +32,7 @@ contract Invoicing is Owner {
     function getInvoiceStatus(bytes32 _hashID, bytes32 _payeeID) public view returns (uint256, bool){
         // Validate invoice first
         require (
-            invoicesList[_payeeID][_hashID].exists == false,
+            invoicesList[_payeeID][_hashID].exists,
             "Invoice not Found"
         );
         
@@ -47,8 +48,13 @@ contract Invoicing is Owner {
         // Validate invoice first
         // If invoices with hashID = _hashID exist
         require (
-            invoicesList[_payeeID][_hashID].exists && msg.value >= invoicesList[_payeeID][_hashID].amountToPay,
+            invoicesList[_payeeID][_hashID].exists,
             "Invoice not Found"
+        );
+        
+        require (
+            !invoicesList[_payeeID][_hashID].isInvoicePaid,
+            "Invoice has already been paid"
         );
         // Search for allInvoicesByCompany array
         uint count = getInvoicesCountByCompanyID(_payeeID);
@@ -59,6 +65,7 @@ contract Invoicing is Owner {
             }
         }
         invoicesList[_payeeID][_hashID].isInvoicePaid = true;
+        emit InvoicePaid(_hashID, _payeeID);
     }
     
     function getInvoicesByCompanyID (bytes32 _payeeID) public view returns (Invoice[] memory) {

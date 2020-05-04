@@ -7,7 +7,7 @@
             ref="companyID"
             :show-error="showError"
             name="Company ID"
-            :typeCompanyID="typeCompanyID"
+            :typeByte32="typeByte32"
             :error-message="errorMessage"
             class="mt-5"
           >

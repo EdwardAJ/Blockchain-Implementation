@@ -1,7 +1,7 @@
 export default {
   data () {
     return {
-      typeCompanyID: true,
+      typeByte32: true,
       errorMessage: null
     }
   },

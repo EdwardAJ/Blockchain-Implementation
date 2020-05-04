@@ -4,23 +4,17 @@
       <div class="row">
         <div class="col">
           <h5 class="page-title page-title-margin"> 
-            Add Invoice
+            Pay Invoice
           </h5>
         </div>
       </div>
       <div class="mt-4 animated fadeIn">
         <Input
-          ref="companyID"
+          ref="invoiceID"
           :show-error="showError"
-          name="Company ID"
-          :typeCompanyID="typeCompanyID"
+          name="Invoice ID"
+          :typeByte32="typeByte32"
           :error-message="errorMessage"
-        />
-        <Input
-          ref="amount"
-          :show-error="showError"
-          :typeNum="typeNum"
-          name="Amount (IDR)"
         />
       </div>
       <div class="row mt-3">
@@ -29,7 +23,7 @@
             :class="['btn-border', 'btn-action', 'field-length', 'form-content']" @click="handleOnSubmit()"
           > 
             <p class="btn-content">
-              Add Invoice
+              Pay Invoice
             </p>
           </button>
         </div>
@@ -41,21 +35,20 @@
 <script>
 
 import invoicing from '../../contract-instances/InvoicingInstance'
-import companies from '../../contract-instances/CompaniesInstance'
 
 import Input from '../form/Input'
-import { isAttributeNotEmpty } from '../../utils/auth'
+import * as auth from '../../utils/auth'
+import * as invoicingUtils from '../../utils/invoicing'
 
 // Mixins:
 import Redirect from '../../mixins/redirect'
-import AccountProp from '../../mixins/accountProp'
-import CompanyIDInput from '../../mixins/inputCompanyID'
+import InvoiceIDInput from '../../mixins/inputInvoiceID'
 
 export default {
   components: {
     Input
   },
-  mixins: [Redirect, AccountProp, CompanyIDInput],
+  mixins: [Redirect, InvoiceIDInput],
   data () {
     return {
       typeNum: true,
@@ -65,30 +58,38 @@ export default {
   methods: {
     async handleOnSubmit () {
       this.resetAttributes()
-      var companyID = this.$refs.companyID.data
-      var amount = this.$refs.amount.data
-      if (isAttributeNotEmpty(companyID) && isAttributeNotEmpty(amount)) {
-        // Check if company valid, with function called from Mixin
-        await this.getCompanyByID(companyID)
-        if (!this.companyNotFound) {
-          await this.addInvoice(companyID, amount, this.account)
-        } else {
-          this.errorMessage = 'Company Not Found'
+      var invoiceID = this.$refs.invoiceID.data
+      if (auth.isAttributeNotEmpty(invoiceID)) {
+        // Check if invoice valid, with function called from Mixin
+        var companyID = auth.getCompanyID()
+        var invoice = await this.getInvoiceByID(invoiceID, companyID)
+        if (invoice) {
+          var amount = invoice[0]
+          var statusPaid = invoice[1]
+          if (statusPaid) {
+            this.showInvoicePaidError()
+          } else {
+            await this.payInvoice(invoiceID, amount)
+          }
         }
       }
     },
-    async addInvoice (companyID, amount, account) {
+    async payInvoice (invoiceID, amount) {
+      // Utils: invoicingUtils already included in mixin
+      console.log('Invoice ID: ', invoiceID)
+      console.log('Amount: ', amount)
       try {
-        var response = await invoicing.methods.addInvoice(companyID, amount).send({ from: account })
-        this.refreshPage()
+        var ethToIDRRate = await invoicingUtils.getEthereumToIDRRate()
+        console.log(ethToIDRRate)
+        console.log(invoicingUtils.convertIDRToEth(amount, ethToIDRRate))
+        // var response = await invoicing.methods.addInvoice(companyID, amount).send({ from: account })
+        // this.refreshPage()
       } catch (error) {
-        if (error.message.includes('Unauthorized')) {
-          this.redirectToLoginPage()
-        }
+        console.error(error)
       }
     },
     resetAttributes () {
-      this.resetCompanyIDAttributes()
+      this.resetInvoiceAttributes()
     }
   }
 }

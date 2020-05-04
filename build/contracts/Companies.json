@@ -167,7 +167,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 170,
-        "sourceUnit": 477,
+        "sourceUnit": 490,
         "src": "59:21:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -181,10 +181,10 @@
               "id": 4,
               "name": "Owner",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 476,
+              "referencedDeclaration": 489,
               "src": "104:5:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Owner_$476",
+                "typeIdentifier": "t_contract$_Owner_$489",
                 "typeString": "contract Owner"
               }
             },
@@ -194,7 +194,7 @@
           }
         ],
         "contractDependencies": [
-          476
+          489
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -202,7 +202,7 @@
         "id": 169,
         "linearizedBaseContracts": [
           169,
-          476
+          489
         ],
         "name": "Companies",
         "nodeType": "ContractDefinition",
@@ -466,7 +466,7 @@
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 478,
+                            "referencedDeclaration": 491,
                             "src": "449:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_abi",
@@ -513,7 +513,7 @@
                       "name": "keccak256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 485,
+                      "referencedDeclaration": 498,
                       "src": "439:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
@@ -925,10 +925,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        494,
-                        495
+                        507,
+                        508
                       ],
-                      "referencedDeclaration": 495,
+                      "referencedDeclaration": 508,
                       "src": "510:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -1126,7 +1126,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 456,
+                  "referencedDeclaration": 469,
                   "src": "397:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1277,7 +1277,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 456,
+                  "referencedDeclaration": 469,
                   "src": "823:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -1926,10 +1926,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        494,
-                        495
+                        507,
+                        508
                       ],
-                      "referencedDeclaration": 495,
+                      "referencedDeclaration": 508,
                       "src": "1355:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2415,7 +2415,7 @@
         "id": 3,
         "nodeType": "ImportDirective",
         "scope": 170,
-        "sourceUnit": 477,
+        "sourceUnit": 490,
         "src": "59:21:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2429,10 +2429,10 @@
               "id": 4,
               "name": "Owner",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 476,
+              "referencedDeclaration": 489,
               "src": "104:5:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Owner_$476",
+                "typeIdentifier": "t_contract$_Owner_$489",
                 "typeString": "contract Owner"
               }
             },
@@ -2442,7 +2442,7 @@
           }
         ],
         "contractDependencies": [
-          476
+          489
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -2450,7 +2450,7 @@
         "id": 169,
         "linearizedBaseContracts": [
           169,
-          476
+          489
         ],
         "name": "Companies",
         "nodeType": "ContractDefinition",
@@ -2714,7 +2714,7 @@
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 478,
+                            "referencedDeclaration": 491,
                             "src": "449:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_abi",
@@ -2761,7 +2761,7 @@
                       "name": "keccak256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 485,
+                      "referencedDeclaration": 498,
                       "src": "439:9:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
@@ -3173,10 +3173,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        494,
-                        495
+                        507,
+                        508
                       ],
-                      "referencedDeclaration": 495,
+                      "referencedDeclaration": 508,
                       "src": "510:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -3374,7 +3374,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 456,
+                  "referencedDeclaration": 469,
                   "src": "397:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -3525,7 +3525,7 @@
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 456,
+                  "referencedDeclaration": 469,
                   "src": "823:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -4174,10 +4174,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        494,
-                        495
+                        507,
+                        508
                       ],
-                      "referencedDeclaration": 495,
+                      "referencedDeclaration": 508,
                       "src": "1355:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -4636,12 +4636,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xF041F74882221eA68c662A86EDF965FD4927B982",
-      "transactionHash": "0x003f21087519b7e7e0986aa5aaa783e504d47d1e9fdc9a0abcf55ff758569232"
+      "address": "0xEd617f2FEb2655F7B0B6b33680B93d7693DDBf08",
+      "transactionHash": "0xef4e7ce2106dc2498d804ba06af2cd3f98012889ee3c20bd92e5b2a439b627d2"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-05-03T08:31:23.942Z",
+  "updatedAt": "2020-05-04T08:33:11.246Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

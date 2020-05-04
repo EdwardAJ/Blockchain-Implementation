@@ -8,15 +8,15 @@ Starting migrations...
 1_initial_migration.js
 ======================
 
-   Replacing 'Migrations'
+   Deploying 'Migrations'
    ----------------------
-   > transaction hash:    0xbc219d3899bb86fcacf1e327221c1b951177bb1090b494e85d2a8121aa77ed15
+   > transaction hash:    0x61e271d2a5e6718c1942f360c46e604583da34d006e315bc2abd94d065fe23e9
    > Blocks: 0            Seconds: 0
-   > contract address:    0x67D5b35f79D58263051B4220E39DDeAFf4A92D2d
-   > block number:        39
-   > block timestamp:     1588494683
+   > contract address:    0x3D63381e0645b96403053F25dBf576711FCDE3c2
+   > block number:        97
+   > block timestamp:     1588581190
    > account:             0xdbFE67093c45622Bb4fC55181c40E745f82d7fa8
-   > balance:             99.78363658
+   > balance:             99.53187304
    > gas used:            188483
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -32,15 +32,15 @@ Starting migrations...
 2_migrate_companies.js
 ======================
 
-   Replacing 'Companies'
+   Deploying 'Companies'
    ---------------------
-   > transaction hash:    0x003f21087519b7e7e0986aa5aaa783e504d47d1e9fdc9a0abcf55ff758569232
+   > transaction hash:    0xef4e7ce2106dc2498d804ba06af2cd3f98012889ee3c20bd92e5b2a439b627d2
    > Blocks: 0            Seconds: 0
-   > contract address:    0xF041F74882221eA68c662A86EDF965FD4927B982
-   > block number:        41
-   > block timestamp:     1588494683
+   > contract address:    0xEd617f2FEb2655F7B0B6b33680B93d7693DDBf08
+   > block number:        99
+   > block timestamp:     1588581190
    > account:             0xdbFE67093c45622Bb4fC55181c40E745f82d7fa8
-   > balance:             99.75890446
+   > balance:             99.50714092
    > gas used:            1194605
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -56,39 +56,39 @@ Starting migrations...
 3_migrate_Invoicing.js
 ======================
 
-   Replacing 'Invoicing'
+   Deploying 'Invoicing'
    ---------------------
-   > transaction hash:    0x5112638d08272688d7b59d948930c6893e352b3ad026c4be6774f56d5471fc0a
+   > transaction hash:    0x9ec451ade25532aad12949016baa26d605ec3005b692235101e1407d24d704c8
    > Blocks: 0            Seconds: 0
-   > contract address:    0x8654C610a2302a4A37634E3D900239306abffC6B
-   > block number:        43
-   > block timestamp:     1588494684
+   > contract address:    0xcd23C07c0a8C4eeFec6fBaBCf3beb51882aB6b5B
+   > block number:        101
+   > block timestamp:     1588581191
    > account:             0xdbFE67093c45622Bb4fC55181c40E745f82d7fa8
-   > balance:             99.7397441
-   > gas used:            931017
+   > balance:             99.48680494
+   > gas used:            989798
    > gas price:           20 gwei
    > value sent:          0 ETH
-   > total cost:          0.01862034 ETH
+   > total cost:          0.01979596 ETH
 
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:          0.01862034 ETH
+   > Total cost:          0.01979596 ETH
 
 
 4_migrate_owner.js
 ==================
 
-   Replacing 'Owner'
+   Deploying 'Owner'
    -----------------
-   > transaction hash:    0xdb6522d5b2b3ef3182617424a6d6747156d080201ed8ed603a76340cf3ebf427
+   > transaction hash:    0xd10b6d7fc0e37e26519ed453b9336fa41cb73fdf41c062ff41b901f169eede2b
    > Blocks: 0            Seconds: 0
-   > contract address:    0x000696FB9668704dcE7F0CfC98FE96be686FfdbF
-   > block number:        45
-   > block timestamp:     1588494684
+   > contract address:    0x16ab8aE79B0780FfE8aF666c2d53ef0Aa601B8f1
+   > block number:        103
+   > block timestamp:     1588581192
    > account:             0xdbFE67093c45622Bb4fC55181c40E745f82d7fa8
-   > balance:             99.73588122
+   > balance:             99.48294206
    > gas used:            166143
    > gas price:           20 gwei
    > value sent:          0 ETH
@@ -104,8 +104,6 @@ Starting migrations...
 Summary
 =======
 > Total deployments:   4
-> Final cost:          0.04960496 ETH
+> Final cost:          0.05078058 ETH
 
-
-0x66630dd25f187a8c5b9f3748dc5fbc10c20759632acf1433e0df561e5bcb250b
-0xe115b7af0d951b1f9d3d49fc75bfcae5a5cd99319421109f44fe5bad0c57068f
+0x828c7149cecf2a9bd58dcb1b67374a1790cf3f9b85af98ac779a66485be4548e

@@ -28,7 +28,7 @@
           </p>
         </div>
       </div>
-      <div v-if="typeCompanyID" class="row" :key="showError">
+      <div v-if="typeByte32" class="row" :key="showError">
         <div v-if="error">
           <p class="form-error animated fadeIn"> 
             {{ error }}
@@ -49,7 +49,7 @@ export default {
       type: Boolean,
       required: false
     },
-    typeCompanyID: {
+    typeByte32: {
       type: Boolean,
       required: false
     },

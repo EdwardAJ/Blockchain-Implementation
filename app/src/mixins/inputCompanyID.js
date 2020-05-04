@@ -20,6 +20,8 @@ export default {
           this.showCompanyNotFound()
         } else if (error.message.includes('invalid bytes32')) {
           this.showBytes32Error()
+        } else {
+          this.errorMessage = error.message
         }
       }
     },
