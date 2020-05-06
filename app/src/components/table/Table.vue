@@ -14,6 +14,13 @@
       </div>
     </template>
     </b-table>
+
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="numberOfRows"
+      :per-page="perPage"
+      aria-controls="table-component"
+    ></b-pagination>
   </div>
 </template>
 

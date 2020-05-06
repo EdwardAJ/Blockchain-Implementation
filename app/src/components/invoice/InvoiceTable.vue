@@ -58,6 +58,7 @@ export default {
     async getInvoicesByID (companyID, account) {
       try {
         var invoicesArray = await invoicing.methods.getInvoicesByCompanyID(companyID).call()
+        console.log('ARR: ', invoicesArray)
         this.showInvoices(invoicesArray)
       } catch (error) {
         if (error.message.includes('Invoice not Found')) {
@@ -72,7 +73,7 @@ export default {
       this.rowsPaid = []
       this.rowsUnpaid = []
       this.invoiceNotFound = false
-
+      
       invoicesArray.forEach((invoice) => {
         let invoiceObj = {
           invoiceID: invoice[0],
@@ -85,6 +86,9 @@ export default {
           this.rowsUnpaid.push(invoiceObj)
         }
       })
+
+      console.log('PAID: ', this.rowsPaid)
+      console.log('UNPAID: ', this.rowsUnpaid)
     }
   }
 }

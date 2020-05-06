@@ -4,6 +4,7 @@ pragma experimental ABIEncoderV2;
 import "./Owner.sol";
 
 contract Companies is Owner {
+    uint256 countCompany;
     Company[] private companiesList;
     struct Company {
         bytes32 _companyID;
@@ -14,7 +15,8 @@ contract Companies is Owner {
     
     
     function addCompany(string memory __name, string memory __address, string memory __phoneNumber) public onlyOwner {
-        bytes32 __companyID = keccak256(abi.encodePacked(__name, __address, __phoneNumber));
+        countCompany++;
+        bytes32 __companyID = keccak256(abi.encodePacked(__name, __address, __phoneNumber, countCompany));
         require (
             bytes(__name).length > 0 && bytes(__address).length > 0 && bytes(__phoneNumber).length > 0 ,
             "Company attributes cannot be null"

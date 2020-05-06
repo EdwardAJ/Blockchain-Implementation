@@ -50,7 +50,7 @@ export default {
 
     eventReader.events.InvoicePaid({}, (error, event) => {
       if (event.returnValues[1] == auth.getCompanyID()) {
-        alert('Invoice has been paid!')
+        // alert('Invoice has been paid!')
         this.refreshPage()
       }
     })

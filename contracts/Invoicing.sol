@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 import "./Owner.sol";
 
 contract Invoicing is Owner {
-    
+    uint256 invoiceCount = 0;
     bytes32 hashID;
     struct Invoice {
         bytes32 hashID;
@@ -22,7 +22,8 @@ contract Invoicing is Owner {
     // for authority to add invoice
     function addInvoice(bytes32 _payeeID, uint256 _amountToPay) public onlyOwner {
         // Create new random hash
-        hashID = keccak256(abi.encodePacked(_payeeID, _amountToPay));
+        invoiceCount++;
+        hashID = keccak256(abi.encodePacked(_payeeID, invoiceCount));
         invoicesList[_payeeID][hashID] = Invoice(hashID, _amountToPay, false, true);
         allInvoicesByCompany[_payeeID].push(Invoice(hashID, _amountToPay, false, true));
         emit InvoiceAdded(hashID, _payeeID);
@@ -61,7 +62,6 @@ contract Invoicing is Owner {
         for (uint i = 0; i < count; i++) {
             if (allInvoicesByCompany[_payeeID][i].hashID == _hashID) {
                 allInvoicesByCompany[_payeeID][i].isInvoicePaid = true;
-                break;
             }
         }
         invoicesList[_payeeID][_hashID].isInvoicePaid = true;
