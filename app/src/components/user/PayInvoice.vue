@@ -70,23 +70,35 @@ export default {
           if (statusPaid) {
             this.showInvoicePaidError()
           } else {
-            await this.payInvoice(invoiceID, amount)
+            await this.payInvoice(companyID, invoiceID, amount)
           }
         }
       }
     },
-    async payInvoice (invoiceID, amount) {
+    async payInvoice (companyID, invoiceID, amount) {
       // Utils: invoicingUtils already included in mixin
-      console.log('Invoice ID: ', invoiceID)
-      console.log('Amount: ', amount)
-      try {
-        var ethToIDRRate = await invoicingUtils.getEthereumToIDRRate()
-        var ethAmount = invoicingUtils.convertIDRToEth(amount, ethToIDRRate)
-        pay.sendEthereum(invoicingUtils.ownerAddress, ethAmount)
-        // var response = await invoicing.methods.addInvoice(companyID, amount).send({ from: account })
-        // this.refreshPage()
-      } catch (error) {
-        console.error(error)
+      var accounts = await auth.getCurrentAccounts().catch((error) => {
+        alert('An error occured')
+      })
+      if (auth.isAccountExist(accounts)) {
+        var fromAddress = accounts[0]
+        try {
+          var ethToIDRRate = await invoicingUtils.getEthereumToIDRRate()
+          var ethAmount = invoicingUtils.convertIDRToEth(amount, ethToIDRRate)
+          try {
+            await pay.sendEthereum(invoicingUtils.ownerAddress, ethAmount)
+            // If success, then proceed to change invoice status
+            var response = await invoicing.methods.payInvoice(invoiceID, companyID).send({ from: fromAddress}).catch((error) => {
+              alert('An error occured: ' + error)
+            })
+            alert('Invoice has been paid!')
+            this.refreshPage()
+          } catch (error) {
+            alert('An error occured: ' + error)
+          }
+        } catch (error) {
+          alert('An error occured: ' + error)
+        }
       }
     },
     resetAttributes () {
