@@ -78,25 +78,28 @@ const router = new Router({
 router.beforeEach(async (to, from, next) => {
   var currentAccounts = await auth.getCurrentAccounts()
   // Path needs authorization
-  if (to.path !== '/login' && to.path !== '/') {
-    if (web3 && auth.isAccountExist(currentAccounts)) {
-      next()
-    } else {
-      next({ path: '/login' })
-    }
-  } else {
+  if (to.path === '/') {
+    next({ path: '/login'})
+  } else if (to.path === '/login') {
     if (web3) {
       try {
-        var currentAccounts = await auth.getCurrentAccounts()
         if (auth.isAccountExist(currentAccounts)) {
           await owner.methods.isCurrentOwner().call({ from: currentAccounts[0] })
           next({ path: '/authority/companies'})
+        } else {
+          next()
         }
       } catch (error) {
         next()
       }
     } else {
       next()
+    }
+  } else {
+    if (web3 && auth.isAccountExist(currentAccounts)) {
+      next()
+    } else {
+      next({ path: '/login' })
     }
   }
 })
