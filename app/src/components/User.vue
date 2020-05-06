@@ -31,7 +31,8 @@ export default {
   mixins: [Redirect],
   data () {
     return {
-      companyName: ''
+      companyName: '',
+      currentAccount: ''
     }
   },
   async beforeMount() {
@@ -41,7 +42,17 @@ export default {
     this.companyName = auth.getCompanyName()
 
     eventReader.events.InvoiceAdded({}, (error, event) => {
-      // console.log("Event: ", event)
+      if (event.returnValues[1] === auth.getCompanyID()) {
+        alert('New Invoice ID: ' + event.returnValues[0])
+        this.refreshPage()
+      }
+    })
+
+    eventReader.events.InvoicePaid({}, (error, event) => {
+      if (event.returnValues[1] == auth.getCompanyID()) {
+        alert('Invoice has been paid!')
+        this.refreshPage()
+      }
     })
 
     window.ethereum.on('accountsChanged', (accounts) => {
@@ -56,7 +67,8 @@ export default {
           // Check if it is the owner
           var currentAccounts = await auth.getCurrentAccounts()
           if (auth.isAccountExist(currentAccounts)) {
-            await owner.methods.isCurrentOwner().call({ from: currentAccounts[0] })
+            this.currentAccount = currentAccounts[0]
+            await owner.methods.isCurrentOwner().call({ from: this.currentAccount})
             this.redirectToCompaniesPage()
           } else {
             this.redirectToLoginPage()

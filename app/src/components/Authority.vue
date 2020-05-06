@@ -48,6 +48,11 @@ export default {
       this.refreshPage()
     })
 
+    eventReader.events.InvoicePaid({}, (error, event) => {
+      alert('New invoice has been paid!')
+      this.refreshPage()
+    })
+
     window.ethereum.on('accountsChanged', (accounts) => {
       this.handleAuth()
     })

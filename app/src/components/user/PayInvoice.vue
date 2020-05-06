@@ -86,15 +86,21 @@ export default {
           var ethToIDRRate = await invoicingUtils.getEthereumToIDRRate()
           var ethAmount = invoicingUtils.convertIDRToEth(amount, ethToIDRRate)
           try {
-            await pay.sendEthereum(invoicingUtils.ownerAddress, ethAmount)
+            await pay.sendEthereum(fromAddress, invoicingUtils.ownerAddress, ethAmount)
             // If success, then proceed to change invoice status
             var response = await invoicing.methods.payInvoice(invoiceID, companyID).send({ from: fromAddress}).catch((error) => {
-              alert('An error occured: ' + error)
+              if (error.message.includes('User denied transaction signature.')) {
+                this.refreshPage()
+              } else {
+                alert('An error occured: ' + error)
+              }
             })
-            alert('Invoice has been paid!')
-            this.refreshPage()
           } catch (error) {
-            alert('An error occured: ' + error)
+            if (error.message.includes('User denied transaction signature.')) {
+              this.refreshPage()
+            } else {
+              alert('An error occured: ' + error)
+            }
           }
         } catch (error) {
           alert('An error occured: ' + error)
